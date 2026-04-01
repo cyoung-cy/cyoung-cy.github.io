@@ -1,199 +1,438 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
+    <title>W3.CSS Template</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="css/App.css" />
-    <link rel="stylesheet" href="css/Header.css" />
-    <link rel="stylesheet" href="css/List.css" />
-    <link rel="stylesheet" href="css/Editor.css" />
-    <link rel="stylesheet" href="css/TodoItem.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/5/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Raleway"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Raleway", sans-serif;
+      }
+    </style>
   </head>
-  <body>
-    <div class="App">
-      <div class="Header">
-        <h3>오늘의 Plan</h3>
-        <h1></h1>
+  <body class="w3-light-grey w3-content" style="max-width: 1600px">
+    <!-- Sidebar/menu -->
+    <nav
+      class="w3-sidebar w3-collapse w3-white w3-animate-left"
+      style="z-index: 3; width: 300px"
+      id="mySidebar"
+    >
+      <br />
+      <div class="w3-container">
+        <a
+          href="#"
+          onclick="w3_close()"
+          class="w3-hide-large w3-right w3-jumbo w3-padding w3-hover-grey"
+          title="close menu"
+        >
+          <i class="fa fa-remove"></i>
+        </a>
+        <img
+          src="/img/myImg.jpg"
+          style="width: 45%"
+          class="w3-round"
+        /><br /><br />
+        <h4><b>김채영</b></h4>
+        <p class="w3-text-grey">안녕하세요! 백엔드 개발자 김채영 입니다.</p>
       </div>
-      <form>
-        <div class="Editor">
-          <input type="text" placeholder="새로운 todo" value="" />
-          <button type="submit">추가</button>
-        </div>
-      </form>
+      <div class="w3-bar-block">
+        <a
+          href="#portfolio"
+          onclick="w3_close()"
+          class="w3-bar-item w3-button w3-padding w3-text-teal"
+          ><i class="fa fa-th-large fa-fw w3-margin-right"></i>PORTFOLIO</a
+        >
+        <a
+          href="#about"
+          onclick="w3_close()"
+          class="w3-bar-item w3-button w3-padding"
+          ><i class="fa fa-user fa-fw w3-margin-right"></i>ABOUT</a
+        >
+        <a
+          href="#contact"
+          onclick="w3_close()"
+          class="w3-bar-item w3-button w3-padding"
+          ><i class="fa fa-envelope fa-fw w3-margin-right"></i>CONTACT</a
+        >
+      </div>
+      <div class="w3-panel w3-large">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
+      </div>
+    </nav>
 
-      <div class="List">
-        <h4>Todo List</h4>
-        <input
-          type="text"
-          id="keyword"
-          placeholder="검색어를 입력하세요"
-          value=""
-        />
-        <div class="todos_wrapper">
-          <!--<div class="TodoItem">
-            <input type="checkbox" id="todo1" />
-            <div class="content"></div>
-            <div class="date"></div>
-            <button onClick>삭제</button>
+    <!-- Overlay effect when opening sidebar on small screens -->
+    <div
+      class="w3-overlay w3-hide-large w3-animate-opacity"
+      onclick="w3_close()"
+      style="cursor: pointer"
+      title="close side menu"
+      id="myOverlay"
+    ></div>
+
+    <!-- !PAGE CONTENT! -->
+    <div class="w3-main" style="margin-left: 300px">
+      <!-- Header -->
+      <header id="portfolio">
+        <a href="#"
+          ><img
+            src="/img/myImg.jpg"
+            style="width: 65px"
+            class="w3-circle w3-right w3-margin w3-hide-large w3-hover-opacity"
+        /></a>
+        <span
+          class="w3-button w3-hide-large w3-xxlarge w3-hover-text-grey"
+          onclick="w3_open()"
+          ><i class="fa fa-bars"></i
+        ></span>
+        <div class="w3-container">
+          <h1><b>My Portfolio</b></h1>
+          <div class="w3-section w3-bottombar w3-padding-16">
+            <span class="w3-margin-right">Filter:</span>
+            <button class="w3-button w3-black">ALL</button>
+            <button class="w3-button w3-white">
+              <i class="fa fa-diamond w3-margin-right"></i>Design
+            </button>
+            <button class="w3-button w3-white w3-hide-small">
+              <i class="fa fa-photo w3-margin-right"></i>Photos
+            </button>
+            <button class="w3-button w3-white w3-hide-small">
+              <i class="fa fa-map-pin w3-margin-right"></i>Art
+            </button>
           </div>
-          <div class="TodoItem">
-            <input type="checkbox" id="todo2" />
-            <div class="content"></div>
-            <div class="date"></div>
-            <button onClick>삭제</button>
+        </div>
+      </header>
+
+      <!-- First Photo Grid-->
+      <div class="w3-row-padding">
+        <div class="w3-third w3-container w3-margin-bottom">
+          <a href="Todo_List/todo.html"><img
+            src="/img/todo.png"
+            alt="Norway"
+            style="width: 100%; height: auto"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <p>
+              <b><a href="Todo_List/todo.html">Todo List</a></b>
+            </p>
+            <p>JavaScript, HTML, CSS로 만든 Todo List.</p>
           </div>
-          <div class="TodoItem">
-            <input type="checkbox" id="todo3" />
-            <div class="content"></div>
-            <div class="date"></div>
-            <button onClick>삭제</button>
-          </div>-->
+        </div>
+        <div class="w3-third w3-container w3-margin-bottom">
+          <a href="fruits_shop_temp/index.html"><img
+            src="/img/fruit.png"
+            alt="Norway"
+            style="width: 100%; height: auto"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <b><a href="fruits_shop_temp/index.html">My Fruit Shop</a></b>
+            <p>JavaScript, HTML, CSS로 만든 과일 상점.</p>
+          </div>
+        </div>
+        <div class="w3-third w3-container">
+          <a href="WS_03_template/index.html"><img
+            src="/img/bank.png"
+            alt="Norway"
+            style="width: 100%; height: auto"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <b><a href="WS_03_template/index.html">KOSTA Bank</a></b>
+            <p>JavaScript, HTML, CSS로 만든 KOSTA Bank.</p>
+          </div>
         </div>
       </div>
+
+      <!-- Second Photo Grid-->
+      <div class="w3-row-padding">
+        <div class="w3-third w3-container w3-margin-bottom">
+          <a href="https://github.com/cyoung-cy/BikeNav"><img
+            src="/img/py.png"
+            alt="Norway"
+            style="width: 100%"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <p><b>평창군 산책길, 자전거길 안내 애플리케이션</b></p>
+            <p>
+              GPS 기반 실시간 코스 경로 안내와 지역 상권 정보를 통합 제공하는 모바일 앱
+            </p>
+          </div>
+        </div>
+        <div class="w3-third w3-container w3-margin-bottom">
+          <a href="https://github.com/cyoung-cy/Traverse_Backend"><img
+            src="/img/trip.png"
+            alt="Norway"
+            style="width: 100%"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <p><b>자유여행객을 위한 애플리케이션 Traverse</b></p>
+            <p>
+              자유여행 초보자도 쉽게 여행을 계획하고 추억을 기록할 수 있도록 돕는 플랫폼
+            </p>
+          </div>
+        </div>
+        <div class="w3-third w3-container">
+          <a href="https://github.com/cyoung-cy/SmartFridge"><img
+            src="/img/smart.png"
+            alt="Norway"
+            style="width: 100%"
+            class="w3-hover-opacity"
+          /></a>
+          <div class="w3-container w3-white">
+            <p><b>냉장고 속 식재료 관리 애플리케이션 SmartFridge</b></p>
+            <p>
+              식재료 관리와 요리 과정을 간편하게 도와주는 모바일 스마트 냉장고 애플리케이션
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div class="w3-center w3-padding-32">
+        <div class="w3-bar">
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+          <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+          <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+        </div>
+      </div>
+
+      <!-- Images of Me -->
+      <!--<div class="w3-row-padding w3-padding-16" id="about">
+        <div class="w3-col m6">
+          <img src="/w3images/avatar_g.jpg" alt="Me" style="width: 100%" />
+        </div>
+        <div class="w3-col m6">
+          <img src="/w3images/me2.jpg" alt="Me" style="width: 100%" />
+        </div>
+      </div>-->
+
+      <div class="w3-container w3-padding-large" style="margin-bottom: 32px">
+        <h4><b>About Me</b></h4>
+        <p>
+          팀과 함께 <b>성장</b>하는 개발자가 목표입니다. 적용해본 적 없는 새로운
+          것에 <b>도전</b>하는 것을 좋아하며, 팀과 함께 <b>문제를 해결</b>해
+          나가며 서비스 완성도를 높이는 데 기여하는 것을 보람으로 느낍니다.
+          <b>긍정적</b>인 성격과 유연한 소통 능력으로 팀 분위기를 밝게 만들며,
+          꾸준하고 성실한 태도로 맡은 역할을 <b>책임감</b> 있게 완수합니다. 😊
+        </p>
+        <hr />
+
+        <h4>Technical Skills</h4>
+        <!-- Progress bars / Skills -->
+        <p>Java</p>
+        <div class="w3-grey">
+          <div
+            class="w3-container w3-dark-grey w3-padding w3-center"
+            style="width: 95%"
+          >
+            95%
+          </div>
+        </div>
+        <p>Spring Boot</p>
+        <div class="w3-grey">
+          <div
+            class="w3-container w3-dark-grey w3-padding w3-center"
+            style="width: 85%"
+          >
+            85%
+          </div>
+        </div>
+        <p>HTML/CSS/JS</p>
+        <div class="w3-grey">
+          <div
+            class="w3-container w3-dark-grey w3-padding w3-center"
+            style="width: 80%"
+          >
+            80%
+          </div>
+        </div>
+        
+        <hr />
+
+        <h4>How much I Skills</h4>
+        <!-- Pricing Tables -->
+        <div class="w3-row-padding" style="margin: 0 -16px">
+          <div class="w3-third w3-margin-bottom">
+            <ul
+              class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off"
+            >
+              <li class="w3-black w3-xlarge w3-padding-32">Java</li>
+              <li class="w3-padding-16">
+                객체지향의 설계원칙에 따라 프로그램을 설계하고 작성할 수
+                있습니다.
+              </li>
+              <li class="w3-padding-16">
+                예외 처리, 컬렉션 프레임워크, 람다 및 스트림 API 등을 활용하여
+                코드를 작성할 수 있습니다.
+              </li>
+            </ul>
+          </div>
+
+          <div class="w3-third w3-margin-bottom">
+            <ul
+              class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off"
+            >
+              <li class="w3-teal w3-xlarge w3-padding-32">Spring Boot</li>
+              <li class="w3-padding-16">API 통신 구현 경험</li>
+              <li class="w3-padding-16">Sprnig Security와 JWT 사용 가능</li>
+              <li class="w3-padding-16">
+                MySQL, Firestore Database와 핸들링 가능
+              </li>
+              <li class="w3-padding-16">
+                JPA를 통해 관계형 데이터베이스와 객체를 매핑 할 수 있음
+              </li>
+            </ul>
+          </div>
+
+          <div class="w3-third">
+            <ul
+              class="w3-ul w3-border w3-white w3-center w3-opacity w3-hover-opacity-off"
+            >
+              <li class="w3-black w3-xlarge w3-padding-32">HTML/CSS/JS</li>
+              <li class="w3-padding-16">웹 표준을 준수하여 마크업할 수 있음</li>
+              <li class="w3-padding-16">반응형 레이아웃 구현이 가능</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Section -->
+      <div class="w3-container w3-padding-large w3-grey">
+        <h4 id="contact"><b>Contact Me</b></h4>
+        <div
+          class="w3-row-padding w3-center w3-padding-24"
+          style="margin: 0 -16px"
+        >
+          <div class="w3-third w3-dark-grey">
+            <p><i class="fa fa-envelope w3-xxlarge w3-text-light-grey"></i></p>
+            <p>chaeyoung7183@gmail.com</p>
+          </div>
+          <div class="w3-third w3-teal">
+            <p>
+              <i class="fa fa-map-marker w3-xxlarge w3-text-light-grey"></i>
+            </p>
+            <p>Incheon, South Korea</p>
+          </div>
+          <div class="w3-third w3-dark-grey">
+            <p><i class="fa fa-phone w3-xxlarge w3-text-light-grey"></i></p>
+            <p>010-5320-7183</p>
+          </div>
+        </div>
+        <hr class="w3-opacity" />
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-section">
+            <label>Name</label>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              name="Name"
+              required
+            />
+          </div>
+          <div class="w3-section">
+            <label>Email</label>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              name="Email"
+              required
+            />
+          </div>
+          <div class="w3-section">
+            <label>Message</label>
+            <input
+              class="w3-input w3-border"
+              type="text"
+              name="Message"
+              required
+            />
+          </div>
+          <button type="submit" class="w3-button w3-black w3-margin-bottom">
+            <i class="fa fa-paper-plane w3-margin-right"></i>Send Message
+          </button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <footer class="w3-container w3-padding-32 w3-dark-grey">
+        <div class="w3-row-padding">            
+          <div class="w3-third">
+            <h3>GitHub & BLOG</h3>
+            <ul class="w3-ul w3-hoverable">
+              <li class="w3-padding-16">
+                <img
+                  src="/img/git.png"
+                  class="w3-left w3-margin-right"
+                  style="width: 30px"
+                />
+                <span class="w3-large">GitHub</span><br />
+                <span><a href="https://github.com/cyoung-cy">https://github.com/cyoung-cy</a></span>
+              </li>
+              <li class="w3-padding-16">
+                <img
+                  src="/img/tistory.png"
+                  class="w3-left w3-margin-right"
+                  style="width: 30px"
+                />
+                <span class="w3-large">BLOG</span><br />
+                <span><a href="https://hellooworldd.tistory.com/">https://hellooworldd.tistory.com/</span>
+              </li>
+            </ul>
+          </div>
+
+      </footer>
+
+      <div class="w3-black w3-center w3-padding-24">
+        Powered by
+        <a
+          href="https://www.w3schools.com/w3css/default.asp"
+          title="W3.CSS"
+          target="_blank"
+          class="w3-hover-opacity"
+          >w3.css</a
+        >
+      </div>
+
+      <!-- End page content -->
     </div>
+
     <script>
-      //초기 데이터
-      let mockData = [
-        {
-          id: 0,
-          isDone: false,
-          content: "React study",
-          date: new Date().getTime(),
-        },
-        {
-          id: 1,
-          isDone: true,
-          content: "친구만나기",
-          date: new Date().getTime(),
-        },
-        {
-          id: 2,
-          isDone: false,
-          content: "낮잠자기",
-          date: new Date().getTime(),
-        },
-      ];
+      // Script to open and close sidebar
+      function w3_open() {
+        document.getElementById("mySidebar").style.display = "block";
+        document.getElementById("myOverlay").style.display = "block";
+      }
 
-      // 요일 출력을 위한 배열
-      let day = ["일", "월", "화", "수", "목", "금", "토"];
-      onload = () => {
-        //초기 데이터 화면에 출력
-        initData(mockData);
-
-        //현재 날짜를 년, 월, 일, 요일 형식으로 출력
-        let today = new Date();
-        let year = today.getFullYear();
-        let month = today.getMonth() + 1;
-        let dayOfMonth = today.getDate();
-        let dayOfWeek = day[today.getDay()];
-
-        document.querySelector(".Header h1").textContent =
-          `${year}년 ${month}월 ${dayOfMonth}일 ${dayOfWeek}요일`;
-      };
-
-      const initData = (printData) => {
-        //mockData 배열을 forEach 이용해서 content와 date를 화면에 출력
-        //동적으로 .TodoItem 요소를 생성해서 출력
-        document.querySelector(".todos_wrapper").innerHTML = ""; // 초기화
-        printData.forEach((todo) => {
-          let todoItem = document.createElement("div");
-          todoItem.classList.add("TodoItem");
-          todoItem.innerHTML = `
-                <input type="checkbox" id="todo${todo.id}" />
-                <div class="content">${todo.content}</div>
-                <div class="date">${new Date(todo.date).toLocaleString()}</div>
-                <button>삭제</button>
-            `;
-          document.querySelector(".todos_wrapper").appendChild(todoItem);
-        });
-        /* checkbox
-                  onchange=”onUpdate(id값)”
-                  todo의 isDone이 true이면 checked속성 추가*/
-        printData.forEach((todo) => {
-          let todoItem = document.querySelector(
-            `.TodoItem:nth-child(${todo.id + 1})`,
-          );
-          let checkbox = todoItem.querySelector("input");
-          checkbox.onchange = () => onUpdate(todo.id);
-          if (todo.isDone) {
-            checkbox.checked = true;
-          }
-        });
-
-        /*button
-                   name속성 추가해서  value에 todo의 id 설정
-                   onclick =”todoDel(this)” 추가
-              */
-        printData.forEach((todo, index) => {
-          let todoItem = document.querySelector(
-            `.TodoItem:nth-child(${index + 1})`,
-          );
-          let button = todoItem.querySelector("button");
-          button.onclick = () => todoDel(button);
-        });
-      };
-
-      ////////////////추가 기능////////////////
-      let idIndex = 3; // id의 값을 증가 시킬 변수(초기데이터가 2까지 있으므로 3부터 시작)
-      document.querySelector(".Editor > button").onclick = () => {
-        event.preventDefault(); //전송기능 막음
-
-        let id = idIndex++;
-        let isDone = false;
-        let content = document.querySelector(".Editor > input").value;
-        let date = new Date().getTime();
-
-        mockData.push({
-          id: id,
-          isDone: isDone,
-          content: content,
-          date: date,
-        });
-
-        initData(mockData);
-      };
-
-      ////////////////수정 기능////////////////
-      const onUpdate = (targetId) => {
-        mockData = mockData.map((todo) =>
-          todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
-        );
-        initData(mockData);
-      };
-
-      ////////////////삭제 기능////////////////
-      document.body.addEventListener("click", function (event) {
-        if (event.target.tagName === "BUTTON") {
-          //button 소문자로 비교하고 싶으면
-          let targetId = parseInt(
-            event.target.parentElement
-              .querySelector("input")
-              .id.replace("todo", ""),
-          );
-          mockData = mockData.filter((todo) => todo.id !== targetId);
-          initData(mockData);
-        }
-      });
-
-      ////////////////검색 기능////////////////
-      document.querySelector("#keyword").onkeyup = (e) => {
-        let searchedTodos = getFilteredData(e.target.value);
-        initData(searchedTodos);
-      };
-
-      const getFilteredData = (search) => {
-        if (search === "") {
-          return mockData;
-        }
-        //filter함수를 이용해서 search(검색어)를 포함하고 있는 todo들를 받는다
-        let filteredData = mockData.filter((todo) =>
-          todo.content.includes(search),
-        );
-        //filter의 결과를 리턴 한다.
-        return filteredData;
-      };
+      function w3_close() {
+        document.getElementById("mySidebar").style.display = "none";
+        document.getElementById("myOverlay").style.display = "none";
+      }
     </script>
   </body>
 </html>
