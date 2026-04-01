@@ -78,6 +78,10 @@ function loadVeggies() {
     let img = veggies[i].img;
     data[i] = { id, name, price, img };
   }
+  //과일 출력 끝나면 버튼 사라짐
+  if (veggiePage >= veggies.length) {
+    loadMoreBtn.style.display = "none";
+  }
 
   renderProducts(data, veggieList); //더보기 버튼 누를 때 실행 할 거임
 }
