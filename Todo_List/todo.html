@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/App.css" />
+    <link rel="stylesheet" href="css/Header.css" />
+    <link rel="stylesheet" href="css/List.css" />
+    <link rel="stylesheet" href="css/Editor.css" />
+    <link rel="stylesheet" href="css/TodoItem.css" />
+  </head>
+  <body>
+    <div class="App">
+      <div class="Header">
+        <h3>오늘의 Plan</h3>
+        <h1></h1>
+      </div>
+      <form>
+        <div class="Editor">
+          <input type="text" placeholder="새로운 todo" value="" />
+          <button type="submit">추가</button>
+        </div>
+      </form>
+
+      <div class="List">
+        <h4>Todo List</h4>
+        <input
+          type="text"
+          id="keyword"
+          placeholder="검색어를 입력하세요"
+          value=""
+        />
+        <div class="todos_wrapper">
+          <!--<div class="TodoItem">
+            <input type="checkbox" id="todo1" />
+            <div class="content"></div>
+            <div class="date"></div>
+            <button onClick>삭제</button>
+          </div>
+          <div class="TodoItem">
+            <input type="checkbox" id="todo2" />
+            <div class="content"></div>
+            <div class="date"></div>
+            <button onClick>삭제</button>
+          </div>
+          <div class="TodoItem">
+            <input type="checkbox" id="todo3" />
+            <div class="content"></div>
+            <div class="date"></div>
+            <button onClick>삭제</button>
+          </div>-->
+        </div>
+      </div>
+    </div>
+    <script>
+      //초기 데이터
+      let mockData = [
+        {
+          id: 0,
+          isDone: false,
+          content: "React study",
+          date: new Date().getTime(),
+        },
+        {
+          id: 1,
+          isDone: true,
+          content: "친구만나기",
+          date: new Date().getTime(),
+        },
+        {
+          id: 2,
+          isDone: false,
+          content: "낮잠자기",
+          date: new Date().getTime(),
+        },
+      ];
+
+      // 요일 출력을 위한 배열
+      let day = ["일", "월", "화", "수", "목", "금", "토"];
+      onload = () => {
+        //초기 데이터 화면에 출력
+        initData(mockData);
+
+        //현재 날짜를 년, 월, 일, 요일 형식으로 출력
+        let today = new Date();
+        let year = today.getFullYear();
+        let month = today.getMonth() + 1;
+        let dayOfMonth = today.getDate();
+        let dayOfWeek = day[today.getDay()];
+
+        document.querySelector(".Header h1").textContent =
+          `${year}년 ${month}월 ${dayOfMonth}일 ${dayOfWeek}요일`;
+      };
+
+      const initData = (printData) => {
+        //mockData 배열을 forEach 이용해서 content와 date를 화면에 출력
+        //동적으로 .TodoItem 요소를 생성해서 출력
+        document.querySelector(".todos_wrapper").innerHTML = ""; // 초기화
+        printData.forEach((todo) => {
+          let todoItem = document.createElement("div");
+          todoItem.classList.add("TodoItem");
+          todoItem.innerHTML = `
+                <input type="checkbox" id="todo${todo.id}" />
+                <div class="content">${todo.content}</div>
+                <div class="date">${new Date(todo.date).toLocaleString()}</div>
+                <button>삭제</button>
+            `;
+          document.querySelector(".todos_wrapper").appendChild(todoItem);
+        });
+        /* checkbox
+                  onchange=”onUpdate(id값)”
+                  todo의 isDone이 true이면 checked속성 추가*/
+        printData.forEach((todo) => {
+          let todoItem = document.querySelector(
+            `.TodoItem:nth-child(${todo.id + 1})`,
+          );
+          let checkbox = todoItem.querySelector("input");
+          checkbox.onchange = () => onUpdate(todo.id);
+          if (todo.isDone) {
+            checkbox.checked = true;
+          }
+        });
+
+        /*button
+                   name속성 추가해서  value에 todo의 id 설정
+                   onclick =”todoDel(this)” 추가
+              */
+        printData.forEach((todo, index) => {
+          let todoItem = document.querySelector(
+            `.TodoItem:nth-child(${index + 1})`,
+          );
+          let button = todoItem.querySelector("button");
+          button.onclick = () => todoDel(button);
+        });
+      };
+
+      ////////////////추가 기능////////////////
+      let idIndex = 3; // id의 값을 증가 시킬 변수(초기데이터가 2까지 있으므로 3부터 시작)
+      document.querySelector(".Editor > button").onclick = () => {
+        event.preventDefault(); //전송기능 막음
+
+        let id = idIndex++;
+        let isDone = false;
+        let content = document.querySelector(".Editor > input").value;
+        let date = new Date().getTime();
+
+        mockData.push({
+          id: id,
+          isDone: isDone,
+          content: content,
+          date: date,
+        });
+
+        initData(mockData);
+      };
+
+      ////////////////수정 기능////////////////
+      const onUpdate = (targetId) => {
+        mockData = mockData.map((todo) =>
+          todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo,
+        );
+        initData(mockData);
+      };
+
+      ////////////////삭제 기능////////////////
+      document.body.addEventListener("click", function (event) {
+        if (event.target.tagName === "BUTTON") {
+          //button 소문자로 비교하고 싶으면
+          let targetId = parseInt(
+            event.target.parentElement
+              .querySelector("input")
+              .id.replace("todo", ""),
+          );
+          mockData = mockData.filter((todo) => todo.id !== targetId);
+          initData(mockData);
+        }
+      });
+
+      ////////////////검색 기능////////////////
+      document.querySelector("#keyword").onkeyup = (e) => {
+        let searchedTodos = getFilteredData(e.target.value);
+        initData(searchedTodos);
+      };
+
+      const getFilteredData = (search) => {
+        if (search === "") {
+          return mockData;
+        }
+        //filter함수를 이용해서 search(검색어)를 포함하고 있는 todo들를 받는다
+        let filteredData = mockData.filter((todo) =>
+          todo.content.includes(search),
+        );
+        //filter의 결과를 리턴 한다.
+        return filteredData;
+      };
+    </script>
+  </body>
+</html>
