@@ -34,7 +34,7 @@ function Detail(props) {
     <div className={"container start " + fade2}>
       <div className="row">
         <div className="col-md-6">
-          <img src={"/" + imgUrl} width="100%" alt={title} />
+          <img src={imgUrl} width="100%" alt={title} />
         </div>
         <div className="col-md-6">
           <h4 className="pt-5">{title}</h4>
@@ -47,7 +47,7 @@ function Detail(props) {
               dispatch(
                 addItem({
                   id: id,
-                  imgurl: imgUrl.replace("img/", ""),
+                  imgurl: imgUrl,
                   name: title,
                   count: 1,
                 }),
